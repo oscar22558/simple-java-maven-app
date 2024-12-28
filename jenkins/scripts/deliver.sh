@@ -28,3 +28,4 @@ set +x
 server="admin@oscar-linux-nb"
 remotePath="/home/admin/bin"
 sh "scp target/${NAME}-${VERSION}.jar ${server}:${remotePath}/"
+sh "ssh ${server} 'cd ${remotePath} && java -jar ${NAME}-${VERSION}.jar &'"
