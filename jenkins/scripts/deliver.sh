@@ -25,7 +25,7 @@ set +x
 # set -x
 # java -jar target/${NAME}-${VERSION}.jar
 
-server="deploy-server"
+server="villagerpro@192.168.0.108"
 remotePath="/Users/villagerpro/bin"
-sh "scp target/${NAME}-${VERSION}.jar ${server}:${remotePath}/"
-sh "ssh ${server} 'cd ${remotePath} && java -jar ${NAME}-${VERSION}.jar &'"
+sh "scp -i $prkey target/${NAME}-${VERSION}.jar $server:${remotePath}/"
+sh "ssh -i $prkey $server 'cd ${remotePath} && java -jar ${NAME}-${VERSION}.jar &'"

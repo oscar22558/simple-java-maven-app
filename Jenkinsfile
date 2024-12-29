@@ -20,9 +20,12 @@ pipeline {
 		    }
 		}
 		stage('Deliver') { 
-		    steps {
-			sh './jenkins/scripts/deliver.sh' 
-		    }
+			withCredentials([sshUserPrivateKey(credentialsId: 'demo-ssh-key', keyFileVariable: 'prkey', usernameVariable: 'usr')]) {
+				steps {
+					sh './jenkins/scripts/deliver.sh' 
+				}
+			}
+
 		}
 	}
 }
