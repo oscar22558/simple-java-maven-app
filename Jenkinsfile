@@ -21,7 +21,11 @@ pipeline {
 		}
 		stage('Deliver') { 
 			steps {
-				withCredentials([sshUserPrivateKey(credentialsId: 'demo-ssh-key', keyFileVariable: 'prkey', usernameVariable: 'usr')]) {
+				withCredentials([sshUserPrivateKey(
+					credentialsId: 'demo-ssh-key', 
+					keyFileVariable: 'prkey', 
+					usernameVariable: 'usr'
+				)]) {
 					sh './jenkins/scripts/deliver.sh' 
 				}
 			}
