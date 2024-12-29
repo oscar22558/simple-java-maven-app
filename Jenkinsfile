@@ -6,26 +6,25 @@ pipeline {
 	stages {
 		stage('Build') { 
 		    steps {
-			sh 'mvn -B -DskipTests clean package' 
+				sh 'mvn -B -DskipTests clean package' 
 		    }
 		}
 		stage('Test') {
 		    steps {
-			sh 'mvn test'
+				sh 'mvn test'
 		    }
 		    post {
-			always {
-			    junit 'target/surefire-reports/*.xml'
-			}
+				always {
+					junit 'target/surefire-reports/*.xml'
+				}
 		    }
 		}
 		stage('Deliver') { 
-			withCredentials([sshUserPrivateKey(credentialsId: 'demo-ssh-key', keyFileVariable: 'prkey', usernameVariable: 'usr')]) {
-				steps {
+			steps {
+				withCredentials([sshUserPrivateKey(credentialsId: 'demo-ssh-key', keyFileVariable: 'prkey', usernameVariable: 'usr')]) {
 					sh './jenkins/scripts/deliver.sh' 
 				}
 			}
-
 		}
 	}
 }
