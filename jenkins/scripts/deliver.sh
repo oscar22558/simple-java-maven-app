@@ -27,5 +27,6 @@ set -x
 
 server="$usr@192.168.0.108"
 remotePath="/Users/$usr/bin"
-scp -i $prkey target/$NAME-$VERSION.jar $server:$remotePath/
-ssh -i $prkey $server 'cd $remotePath && java -jar $NAME-$VERSION.jar &'
+targetJar=$NAME-$VERSION.jar
+scp -i $prkey target/$targetJar $server:$remotePath/
+ssh -i $prkey $server "cd $remotePath && java $NAME-$VERSION.jar &"
