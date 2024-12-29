@@ -22,10 +22,10 @@ set +x
 
 # echo 'The following command runs and outputs the execution of your Java'
 # echo 'application (which Jenkins built using Maven) to the Jenkins UI.'
-# set -x
+set -x
 # java -jar target/${NAME}-${VERSION}.jar
 
-server="villagerpro@192.168.0.108"
-remotePath="/Users/villagerpro/bin"
+server="$usr@192.168.0.108"
+remotePath="/Users/$usr/bin"
 sh "scp -i $prkey target/${NAME}-${VERSION}.jar $server:${remotePath}/"
 sh "ssh -i $prkey $server 'cd ${remotePath} && java -jar ${NAME}-${VERSION}.jar &'"
