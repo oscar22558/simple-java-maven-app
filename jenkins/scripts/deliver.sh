@@ -25,8 +25,8 @@ set +x
 set -x
 # java -jar target/${NAME}-${VERSION}.jar
 
-server="$usr@192.168.0.108"
-remotePath="/Users/$usr/bin"
+server="$usr@192.168.0.110"
+remotePath="/home/$usr/var/jenkins"
 targetJar=$NAME-$VERSION.jar
 scp -i $prkey target/$targetJar $server:$remotePath/
 ssh -i $prkey $server "cd $remotePath && java -jar $NAME-$VERSION.jar &"
